@@ -49,7 +49,9 @@ function LoginPage() {
   return (
     <Card>
       <CardHeader>
-        <Heading size='md'>Login</Heading>
+        <Heading size='md'>
+          <p className="title">Login</p>
+        </Heading>
         <br/>
       </CardHeader>
       <CardBody>
@@ -75,6 +77,7 @@ function LoginPage() {
           onChange={handlePassword}
         />
         </Text> 
+        <br/>
 
         <button className="btn" type="submit">Login</button>
         </Box>

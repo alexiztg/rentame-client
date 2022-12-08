@@ -2,7 +2,8 @@ import "./SignupPage.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import authService from "../../services/auth.service";
-import { Card, CardHeader, CardBody, CardFooter, Heading, Stack,Box,Text,StackDivider } from '@chakra-ui/react'
+import { Card, CardHeader, CardBody, CardFooter, Heading, Stack,Box,Text,StackDivider } from '@chakra-ui/react';
+
 
 function SignupPage() {
   const [email, setEmail] = useState("");
@@ -49,7 +50,11 @@ function SignupPage() {
   return (
     <Card>
       <CardHeader>
-        <Heading size='md'>Sign Up</Heading>
+        <Heading size='lg'>
+          <Text fontSize='5xl'>
+            <p className="title">Sign Up</p>
+          </Text>  
+        </Heading>
         <br/>
       </CardHeader>
       <CardBody>
