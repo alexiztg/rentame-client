@@ -2,6 +2,7 @@ import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
+import { Text } from "@chakra-ui/react";
 
 function Navbar() {
   // Subscribe to the AuthContext to gain access to
@@ -11,7 +12,7 @@ function Navbar() {
   return (
     <header className="header">
         <div className="logo">
-            <h1>CRAZY RENT</h1>
+        <Text fontSize='4xl' color="#5b6af0">Crazy Rent</Text>
         </div>
         <nav>
            <ul className="nav-links">
@@ -28,7 +29,7 @@ function Navbar() {
             {/* <img src="https://picsum.photos/id/402/200/300" style={{ width: 50, height: 50, borderRadius: 25}} alt="profile" /> */}
           </Link>
 
-          <span>{user && user.name}</span>
+          <h1>{user && user.name}</h1>
         </>
       )}
 
@@ -44,6 +45,9 @@ function Navbar() {
           </Link>
         </>
       )}
+      <Link to="/shops" >
+              <li><button className="btn1">Shops</button></li>
+            </Link>
            </ul>            
         </nav>
         <Link to="/contact" ><button className="btn1">Contact</button></Link>
