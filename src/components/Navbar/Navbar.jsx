@@ -11,7 +11,7 @@ function Navbar() {
   return (
     <header className="header">
         <div className="logo">
-            <h1>RENTAME</h1>
+            <h1>CRAZY RENT</h1>
         </div>
         <nav>
            <ul className="nav-links">
