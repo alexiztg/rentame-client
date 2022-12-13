@@ -46,7 +46,7 @@ function ShopListPage() {
                     </CardBody>
                     <CardFooter>
                     <Button colorScheme='blue'>
-                    <Link colorScheme='blue' to={`/shops/${shop._id}/rent`}>
+                    <Link to={`/shops/${shop._id}/rent`}>
                         More info
                     </Link>
                     </Button>
