@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import './index.css'
 import { Link } from "react-router-dom";
 import { Card, Image,
     Stack,
@@ -37,8 +38,8 @@ function ShopListPage() {
         {shops.map((shop) => {
           return (
             
-            <Card w='40vw' direction={{ base: 'column', sm: 'row' }} overflow='hidden' variant='outline' key={shop._id}>
-                <Image objectFit='cover' maxW={{ base: '100%', sm: '200px' }} src='https://www.linkpicture.com/q/Store.png'alt='Caffe Latte'/>
+            <Card w='45vw' direction={{ base: 'column', sm: 'row' }} overflow='hidden' variant='outline' key={shop._id}>
+                <Image  objectFit='cover' maxW={{ base: '100%', sm: '200px' }} src='https://www.linkpicture.com/q/Store.png'alt='Caffe Latte'/>
                 <Stack>
                     <CardBody>
                     <Heading size='md'>{shop.name}</Heading>

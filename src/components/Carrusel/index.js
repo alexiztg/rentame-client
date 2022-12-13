@@ -11,6 +11,7 @@ export default class Fade extends Component {
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1,
+      arrows:false,
       autoplay: true,
       autoplaySpeed: 1000,
     };

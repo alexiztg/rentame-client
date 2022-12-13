@@ -20,12 +20,15 @@ import {
 } from "@chakra-ui/react";
 import { SettingsIcon } from "@chakra-ui/icons";
 
+const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005"
+
+
 function RentListPage(props) {
   const [shop, setShop] = useState(null);
   const { id } = useParams();
   const getDetails = (id) => {
     axios
-      .get(`http://localhost:5005/api/shops/${id}`)
+      .get(`${API_URL}/api/shops/${id}`)
       .then((respuesta) => setShop(respuesta.data))
       .catch(console.log);
   };
@@ -154,7 +157,7 @@ function RentListPage(props) {
               </Text>
             </CardBody>
             <CardFooter>
-              <Text>{review.date}</Text>
+              <Text>{moment(review.date).format("DD/MM/YYYY")}</Text>
             </CardFooter>
           </Card>
           </div>
