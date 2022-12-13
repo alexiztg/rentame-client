@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
+import './index.css'
 
 export default class Fade extends Component {
   render() {
@@ -9,23 +10,21 @@ export default class Fade extends Component {
       infinite: true,
       speed: 500,
       slidesToShow: 1,
-      slidesToScroll: 1
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 1000,
     };
     return (
       <div>
-        <h2>Fade</h2>
         <Slider {...settings}>
           <div>
-            <img src="../../../public/images/1.jpg" alt=""/>
+            <img className="carrusel" src="/images/1.jpg" alt=""/>
           </div>
           <div>
-          <img src="../../../public/images/1.jpg" alt=""/>
+          <img className="carrusel" src="/images/2.jpg" alt=""/>
           </div>
           <div>
-          <img src="../../../public/images/1.jpg" alt=""/>
-          </div>
-          <div>
-          <img src="../../../public/images/1.jpg" alt=""/>
+          <img className="carrusel" src="/images/3.jpg" alt=""/>
           </div>
         </Slider>
       </div>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
+import moment from 'moment'
 import {
   Card,
   CardHeader,
@@ -28,6 +29,7 @@ function RentListPage(props) {
       .then((respuesta) => setShop(respuesta.data))
       .catch(console.log);
   };
+  
 
   useEffect(() => {
     getDetails(id);
@@ -140,6 +142,7 @@ function RentListPage(props) {
         >
         {shop &&
         shop.review.map((review) => (
+          
           <div key={review._id}>
           <Card>
             <CardHeader>

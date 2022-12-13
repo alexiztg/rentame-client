@@ -37,7 +37,7 @@ function ShopListPage() {
         {shops.map((shop) => {
           return (
             
-            <Card w='50vw' direction={{ base: 'column', sm: 'row' }} overflow='hidden' variant='outline' key={shop._id}>
+            <Card w='40vw' direction={{ base: 'column', sm: 'row' }} overflow='hidden' variant='outline' key={shop._id}>
                 <Image objectFit='cover' maxW={{ base: '100%', sm: '200px' }} src='https://www.linkpicture.com/q/Store.png'alt='Caffe Latte'/>
                 <Stack>
                     <CardBody>
