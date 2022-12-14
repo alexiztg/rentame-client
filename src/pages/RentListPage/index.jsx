@@ -100,7 +100,7 @@ function RentListPage(props) {
               </Text>
             </ListItem>
             {shop &&
-              shop.rent.map((rent) => (
+              shop?.rent?.map((rent) => (
                 <div key={rent._id}>
                   <ListItem>
                     <Text>
@@ -156,7 +156,7 @@ function RentListPage(props) {
           templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
         >
         {shop &&
-        shop.review.map((review) => (
+        shop?.review?.map((review) => (
           
           <div key={review._id}>
           <Card>

@@ -15,9 +15,10 @@ import {
   VStack,
 } from "@chakra-ui/react";
 
-const API_URL = "http://localhost:5005";
+const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005"
 
 function AddRent(props) {
+    console.log("props",props)
   const [available, setAvailable] = useState("");
   const [date_start, setDate_start] = useState("");
   const [date_end, setDate_end] = useState("");
