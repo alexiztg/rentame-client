@@ -39,10 +39,17 @@ function RentListPage(props) {
   }, [id]);
 
   return (
+   
     <div className="ProjectDetails">
     <Center>
     <SimpleGrid columns={2} spacing={10}>
+    
     <Box height='80px'>
+    {shop && (
+    <Button colorScheme="blue">
+          <Link to={`/shops/${shop._id}/rent/create`}>Create RENT</Link>
+        </Button>
+    )}
       <Card maxW="md">
         <CardHeader>
           <Flex spacing="4">
@@ -99,21 +106,21 @@ function RentListPage(props) {
                     <Text>
                       <SettingsIcon color="green.500" />
                       <Text as="b"> Available:</Text>
-                      {rent.available}
+                      <input type="checkbox" defaultChecked={false} checked={rent.available} value={rent.available}></input>
                     </Text>
                   </ListItem>
                   <ListItem>
                     <Text>
                       <SettingsIcon color="green.500" />
                       <Text as="b"> Date starts:</Text>
-                      {rent.date_start}
+                      {moment(rent.date_start).format("DD/MM/YYYY")}
                     </Text>
                   </ListItem>
                   <ListItem>
                     <Text>
                       <SettingsIcon color="green.500" />
                       <Text as="b"> Date ends:</Text>
-                      {rent.date_end}
+                      {moment(rent.date_end).format("DD/MM/YYYY")}
                     </Text>
                   </ListItem>
                 </div>
@@ -137,6 +144,11 @@ function RentListPage(props) {
       </Card>
       </Box>
       <Box height='80px'>
+      {shop && (
+      <Button colorScheme="blue">
+          <Link to={`/shops/${shop._id}/review/create`}>Create a Review</Link>
+        </Button>
+      )}
       <div>
       <Text fontSize='5xl'>Reviews</Text>
         <SimpleGrid
