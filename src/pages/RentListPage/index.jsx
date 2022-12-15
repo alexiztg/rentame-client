@@ -44,7 +44,7 @@ function RentListPage(props) {
     <Center>
     <SimpleGrid columns={2} spacing={10}>
     
-    <Box height='80px'>
+    <Box height='80px' className="marginTop">
     {shop && (
     <Button colorScheme="blue">
           <Link to={`/shops/${shop._id}/rent/create`}>Create RENT</Link>
@@ -104,7 +104,7 @@ function RentListPage(props) {
                   <ListItem>
                     <Text>
                       <SettingsIcon color="green.500" />
-                      <Text as="b"> Available: Alexis</Text>
+                      <Text as="b"> Available: </Text>
                       <input type="checkbox" defaultChecked={false} checked={shop.rent?.available} value={shop.rent?.available}></input>
                     </Text>
                   </ListItem>
@@ -126,12 +126,14 @@ function RentListPage(props) {
               }
           </List>
         </CardBody>
-        <Image
+        <Image 
+          className="marginTopNeg spaceLeft"
           objectFit="cover"
           src="https://www.linkpicture.com/q/Store.png"
           alt="Chakra UI"
         />
         <CardFooter
+        className="marginTopNeg"
           justify="space-between"
           flexWrap="wrap"
           sx={{ "& > button": { minW: "136px" } }}
@@ -139,10 +141,16 @@ function RentListPage(props) {
           <Link to="/shops">
             <Button>Back to shops</Button>
           </Link>
+          <Button className="spaceLeft1" colorScheme="whatsapp">
+                      <Link to={`/shops/${shop?._id}/rent/${shop?.rent?._id}/edit`}>Edit</Link>
+                    </Button>
+                    <Button className="spaceLeft1" colorScheme="red">
+                      <Link to={`/shops//rent/`}>Delete</Link>
+                    </Button>
         </CardFooter>
       </Card>
       </Box>
-      <Box height='80px'>
+      <Box height='80px' className="marginTop">
       {shop && (
       <Button colorScheme="blue">
           <Link to={`/shops/${shop._id}/review/create`}>Create a Review</Link>
@@ -166,10 +174,17 @@ function RentListPage(props) {
               <Text>
                 {review.review}
               </Text>
+              <Text>Date: {moment(review.date).format("DD/MM/YYYY")}</Text>
             </CardBody>
             <CardFooter>
-              <Text>{moment(review.date).format("DD/MM/YYYY")}</Text>
+              <Button className="spaceLeft1" colorScheme="whatsapp">
+                      <Link to={`/shops//review/`}>Edit</Link>
+                    </Button>
+                    <Button className="spaceLeft1" colorScheme="red">
+                      <Link to={`/shops//review/`}>Delete</Link>
+                    </Button>
             </CardFooter>
+            
           </Card>
           </div>
           ))}

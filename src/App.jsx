@@ -15,6 +15,8 @@ import RentListPage from "./pages/RentListPage";
 import AddShop from "./pages/NewShopPage";
 import AddReview from "./pages/NewReviewPage";
 import AddRent from "./pages/NewRentPage";
+import EditShopPage from "./pages/EditShopPage";
+import EditRentPage from "./pages/EditRentPage";
 
 function App() {
   return (
@@ -26,7 +28,9 @@ function App() {
         <Route path="/signup" element={ <IsAnon> <SignupPage/> </IsAnon>}/>
         <Route path="/login" element={<IsAnon> <LoginPage/> </IsAnon> }/>
         <Route path="/shops" element={<ShopListPage/> }/>
+        <Route path="/shops/:id/edit" element={<EditShopPage/>}/>
         <Route path="/shops/:id/rent" element={<RentListPage/>}/>
+        <Route path="/shops/:id/rent/:idRent/edit" element={<EditRentPage/>}/>
         <Route path="/shops/:id/rent/create" element={<AddRent/>}/>
         <Route path="/shops/:id/review/create" element={<AddReview/>}/>
         <Route path="/new-shop" element={<AddShop/>}/>

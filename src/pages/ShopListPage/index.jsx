@@ -68,6 +68,12 @@ function ShopListPage() {
                     <Button colorScheme="blue">
                       <Link to={`/shops/${shop._id}/rent`}>More info</Link>
                     </Button>
+                    <Button className="spaceLeft1" colorScheme="whatsapp">
+                      <Link to={`/shops/${shop._id}/edit`}>Edit</Link>
+                    </Button>
+                    <Button className="spaceLeft1" colorScheme="red">
+                      <Link to={`/shops/${shop._id}`}>Delete</Link>
+                    </Button>
                   </CardFooter>
                 </Stack>
               </Card>
