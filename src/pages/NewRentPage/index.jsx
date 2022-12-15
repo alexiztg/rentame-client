@@ -40,6 +40,7 @@ function AddRent(props) {
         `${API_URL}/api/shops/${id}/rent/create`,
         { available, date_start, date_end, owner: user._id, shop: id }
       );
+      console.log(newShop);
       //Enviar al detalle de la tienda
       navigate(`/shops/${id}/rent`);
     } catch (err) {

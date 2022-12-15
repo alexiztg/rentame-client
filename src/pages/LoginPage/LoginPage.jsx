@@ -3,7 +3,7 @@ import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
 import authService from "../../services/auth.service";
-import { Card, CardHeader, CardBody, CardFooter, Heading, Stack,Box,Text,StackDivider } from '@chakra-ui/react'
+import { Card, CardHeader, CardBody, Heading, Stack,Box,Text,StackDivider } from '@chakra-ui/react'
 
 
 function LoginPage() {

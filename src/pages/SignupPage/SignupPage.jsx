@@ -2,7 +2,7 @@ import "./SignupPage.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import authService from "../../services/auth.service";
-import { Card, CardHeader, CardBody, CardFooter, Heading, Stack,Box,Text,StackDivider } from '@chakra-ui/react';
+import { Card, CardHeader, CardBody, Heading, Stack,Box,Text,StackDivider } from '@chakra-ui/react';
 
 
 function SignupPage() {

@@ -42,7 +42,7 @@ function ShopListPage() {
         </Button>
       </HStack>
       <br />
-      <Grid templateColumns="repeat(2, 1fr)" gap={6}>
+      <Grid className="spaceL" templateColumns="repeat(2, 1fr)" gap={6}>
         {shops.map((shop) => {
           return (
             <div key={shop._id}>

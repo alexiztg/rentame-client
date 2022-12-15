@@ -5,7 +5,9 @@ img{
 .spaceLeft{
     margin-left: 80px;
 }
-
+.spaceL{
+  margin-left: 50px;
+}
 .spaceLeft1{
   margin-left: 20px;
 }
