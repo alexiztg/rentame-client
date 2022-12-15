@@ -25,11 +25,9 @@ function Navbar() {
         <li><button className="btn1" onClick={logOutUser}>Logout</button></li>
 
           <Link to="/profile">
-          <li><button>Profile</button></li>
+          <li><button className="btn1">Profile {user && user.name}</button></li>
             {/* <img src="https://picsum.photos/id/402/200/300" style={{ width: 50, height: 50, borderRadius: 25}} alt="profile" /> */}
           </Link>
-
-          <h1>{user && user.name}</h1>
         </>
       )}
 
