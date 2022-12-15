@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../../context/auth.context"
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   Card,
   CardBody,
@@ -18,26 +19,29 @@ import {
 const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005"
 
 function AddRent(props) {
-    console.log("props",props)
-  const [available, setAvailable] = useState("");
+  const [available, setAvailable] = useState(false);
   const [date_start, setDate_start] = useState("");
   const [date_end, setDate_end] = useState("");
-
+  const { user } = useContext(AuthContext);
+  console.log(user);
   //Nos permite navegar dandole la URL como parametro
   const navigate = useNavigate();
 
+  const { id } = useParams();
+
   const handleSubmit = async (e) => {
     try {
-    //   //Prevenir el comportamiento del envio del formulario
-    //   e.preventDefault();
-    //   console.log({ available, date_start, date_end });
-    //   //Enviar datos al server
-    //   const newShop = await axios.post(
-    //     `${API_URL}/api/shops/${shop._id}/rent/create`,
-    //     { available, date_start, date_end }
-    //   );
-    //   //Enviar al detalle de la tienda
-    //   navigate(`/shops/${newShop.data._id}/rent`);
+      //Prevenir el comportamiento del envio del formulario
+      e.preventDefault();
+      console.log({ available, date_start, date_end });
+      console.log("111", id);
+      //Enviar datos al server
+      const newShop = await axios.post(
+        `${API_URL}/api/shops/${id}/rent/create`,
+        { available, date_start, date_end, owner: user._id, shop: id }
+      );
+      //Enviar al detalle de la tienda
+      navigate(`/shops/${id}/rent`);
     } catch (err) {
       console.log(err);
     }
@@ -64,14 +68,14 @@ function AddRent(props) {
                   <Stack spacing="4">
                     <FormControl>
                       <FormLabel size="sm">Available</FormLabel>
-                      <Input
+                      <input
                         type="checkbox"
                         defaultChecked={false}
                         bg="white"
                         size="sm"
                         name="available"
                         value={available}
-                        onChange={(e) => setAvailable(e.target.value)}
+                        onChange={(e) => setAvailable(e.target.checked)}
                       />
                     </FormControl>
                     <FormControl>

@@ -1,9 +1,12 @@
-import { useState, useEffect, useContext } from "react";
-import {AuthContext} from "../../context/auth.context"
+import { useState, useContext } from "react";
+import { AuthContext } from "../../context/auth.context";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import {
-  Card,CardBody,Heading,Stack,
+  Card,
+  CardBody,
+  Heading,
+  Stack,
   Box,
   Button,
   Center,
@@ -13,38 +16,36 @@ import {
   VStack,
 } from "@chakra-ui/react";
 
-const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005"
+const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005";
 
 function AddReview(props) {
   const [review, setReview] = useState("");
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
-  const {user} = useContext(AuthContext)
-console.log(user);
+  const { user } = useContext(AuthContext);
+  console.log(user);
   //Nos permite navegar dandole la URL como parametro
   const navigate = useNavigate();
 
-  
-    const {id} = useParams();
+  const { id } = useParams();
 
   const handleSubmit = async (e) => {
     try {
       //Prevenir el comportamiento del envio del formulario
       e.preventDefault();
       console.log({ review, title, date });
-      console.log("111",id)
+      console.log("111", id);
       //Enviar datos al server
-    const newShop = await axios.post(
-         `${API_URL}/api/shops/${id}/review/create`,
-             { review, title, date,owner:user._id,shop:id }
-                                    );
+      const newShop = await axios.post(
+        `${API_URL}/api/shops/${id}/review/create`,
+        { review, title, date, owner: user._id, shop: id }
+      );
       //Enviar al detalle de la tienda
       navigate(`/shops/${id}/rent`);
     } catch (err) {
       console.log(err);
     }
   };
-
 
   return (
     <div className="AddReview">

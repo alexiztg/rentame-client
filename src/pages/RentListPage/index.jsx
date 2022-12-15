@@ -99,32 +99,31 @@ function RentListPage(props) {
                 )}
               </Text>
             </ListItem>
-            {shop &&
-              shop?.rent?.map((rent) => (
-                <div key={rent._id}>
+            {shop?.rent &&
+                <div key={shop.rent?._id}>
                   <ListItem>
                     <Text>
                       <SettingsIcon color="green.500" />
-                      <Text as="b"> Available:</Text>
-                      <input type="checkbox" defaultChecked={false} checked={rent.available} value={rent.available}></input>
+                      <Text as="b"> Available: Alexis</Text>
+                      <input type="checkbox" defaultChecked={false} checked={shop.rent?.available} value={shop.rent?.available}></input>
                     </Text>
                   </ListItem>
                   <ListItem>
                     <Text>
                       <SettingsIcon color="green.500" />
                       <Text as="b"> Date starts:</Text>
-                      {moment(rent.date_start).format("DD/MM/YYYY")}
+                      {moment(shop.rent?.date_start).format("DD/MM/YYYY")}
                     </Text>
                   </ListItem>
                   <ListItem>
                     <Text>
                       <SettingsIcon color="green.500" />
                       <Text as="b"> Date ends:</Text>
-                      {moment(rent.date_end).format("DD/MM/YYYY")}
+                      {moment(shop.rent?.date_end).format("DD/MM/YYYY")}
                     </Text>
                   </ListItem>
                 </div>
-              ))}
+              }
           </List>
         </CardBody>
         <Image
