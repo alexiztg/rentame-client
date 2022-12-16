@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
+import ContactPage from "./pages/ContactPage";
 
 import Navbar from "./components/Navbar/Navbar";
 import IsPrivate from "./components/IsPrivate/IsPrivate";
@@ -28,6 +29,7 @@ function App() {
         <Route path="/profile" element={<IsPrivate><ProfilePage /></IsPrivate>}/>
         <Route path="/signup" element={ <IsAnon> <SignupPage/> </IsAnon>}/>
         <Route path="/login" element={<IsAnon> <LoginPage/> </IsAnon> }/>
+        <Route path="/contact" element={<ContactPage/>}/>
         <Route path="/shops" element={<ShopListPage/> }/>
         <Route path="/shops/:id/edit" element={<EditShopPage/>}/>
         <Route path="/shops/:id/rent" element={<RentListPage/>}/>
