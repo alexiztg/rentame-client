@@ -1,6 +1,19 @@
 import React from 'react'
 import emailjs from '@emailjs/browser';
 import {useNavigate } from "react-router-dom";
+import {
+    Card,
+    CardBody,
+    Heading,
+    Stack,
+    Box,
+    Button,
+    Center,
+    FormControl,
+    FormLabel,
+    Input,
+    VStack,
+  } from "@chakra-ui/react";
 
 
 const ContactPage = () => {
@@ -15,21 +28,66 @@ const ContactPage = () => {
     
       return (
         <div className='div-form'>
-          <h1 className='title-form'>Contact Us</h1>
-          <form className='form-mail' onSubmit={sendEmail}>
-            <label>Name</label>
-            <input type="text" name='name' />
-            <hr />
-    
-            <label>Email</label>
-            <input type="email" name='email' />
-            <hr />
-    
-            <label>Message</label>
-            <textarea name="message" id="" cols="30" rows="10"></textarea>
-            <hr />
-            <button>Send</button>
-          </form>
+          <Box>
+        <Center>
+          <Stack spacing="4">
+            <VStack as="header" spacing="6" mt="8">
+              <Heading
+                as="h1"
+                fontWeight="300"
+                fontSize="24px"
+                letterSpacing="-0.5px"
+              >
+                Contact Us
+              </Heading>
+            </VStack>
+            <Card bg="#f6f8fa" variant="outline" w="308px">
+              <CardBody>
+                <form onSubmit={sendEmail}>
+                  <Stack spacing="4">
+                    <FormControl>
+                      <FormLabel size="sm">Name</FormLabel>
+                      <Input
+                        type="text"
+                        bg="white"
+                        size="sm"
+                        name='name'
+                      />
+                    </FormControl>
+                    <FormControl>
+                      <FormLabel size="sm">Email</FormLabel>
+                      <Input
+                        bg="white"
+                        size="sm"
+                        type="email"
+                        name='email'
+                      />
+                    </FormControl>
+                    <FormControl>
+                      <FormLabel size="sm">Message</FormLabel>
+                      <textarea 
+                      name="message" 
+                      id="" 
+                      cols="20" 
+                      rows="10"></textarea>
+                    </FormControl>
+                    <Button
+                      colorScheme="blue"
+                      color="white"
+                      size="sm"
+                      _hover={{ bg: "#2c974b" }}
+                      _active={{ bg: "#298e46" }}
+                      type="submit"
+                    >
+                      SEND!
+                    </Button>
+                  </Stack>
+                </form>
+              </CardBody>
+            </Card>
+          </Stack>
+        </Center>
+      </Box>
         </div>
       )
 }
