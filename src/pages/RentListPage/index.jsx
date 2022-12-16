@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import moment from "moment";
 import { FiEdit,FiTrash2 } from "react-icons/fi";
 import {AuthContext} from "../../context/auth.context";
@@ -28,7 +28,9 @@ function RentListPage(props) {
   const [shop, setShop] = useState(null);
   const { id } = useParams();
   const { user } = useContext(AuthContext);
-
+  const navigate = useNavigate();
+  
+   
   const getDetails = (id) => {
     axios
       .get(`${API_URL}/api/shops/${id}`)
@@ -39,6 +41,27 @@ function RentListPage(props) {
   useEffect(() => {
     getDetails(id);
   }, [id]);
+
+  const handleDeleteReview = async (_id) => {
+    try{
+      console.log(_id)
+      axios.delete(`${API_URL}/api/shops/${id}/review/${_id}`);
+      navigate(0)
+    }catch(err){
+      console.log(err);
+    }
+  }
+
+  const handleDeleteRent = async (_id) => {
+    try{
+      console.log(_id)
+      axios.delete(`${API_URL}/api/shops/${id}/rent/${_id}`);
+      navigate(0)
+    }catch(err){
+      console.log(err);
+    }
+  }
+
 
   return (
     <div className="ProjectDetails">
@@ -150,8 +173,8 @@ function RentListPage(props) {
                   <FiEdit />Edit Rent
                   </Link>
                 </Button>
-                <Button className="spaceLeft1" colorScheme="red">
-                  <Link to={`/shops//rent/`}><FiTrash2/>Delete Rent</Link>
+                <Button className="spaceLeft1" colorScheme="red" onClick={()=>handleDeleteRent(shop.rent._id)}>
+                  <FiTrash2/>Delete Rent
                 </Button>
               </CardFooter>
             </Card>
@@ -190,8 +213,8 @@ function RentListPage(props) {
                               <FiEdit />
                             </Link>
                           </Button>
-                          <Button className="spaceLeft1" colorScheme="red">
-                            <Link to={`/shops//review/`}><FiTrash2/></Link>
+                          <Button className="spaceLeft1" colorScheme="red" onClick={()=>handleDeleteReview(review._id)}>
+                            <FiTrash2/>
                           </Button>
                         </CardFooter>
                   )}

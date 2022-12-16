@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "./index.css";
 import { Link } from "react-router-dom";
 import {
@@ -19,6 +20,7 @@ const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005";
 
 function ShopListPage() {
   const [shops, setShops] = useState([]);
+  const navigate = useNavigate();
 
   const getAllShops = () => {
     axios
@@ -32,6 +34,16 @@ function ShopListPage() {
   useEffect(() => {
     getAllShops();
   }, []);
+
+  const handleDeleteShop = async (id) => {
+    try{
+      console.log(id)
+      axios.delete(`${API_URL}/api/shops/${id}`);
+      navigate(0)
+    }catch(err){
+      console.log(err);
+    }
+  }
 
   return (
     <div className="ShopListPage">
@@ -71,8 +83,8 @@ function ShopListPage() {
                     <Button className="spaceLeft1" colorScheme="whatsapp">
                       <Link to={`/shops/${shop._id}/edit`}>Edit</Link>
                     </Button>
-                    <Button className="spaceLeft1" colorScheme="red">
-                      <Link to={`/shops/${shop._id}`}>Delete</Link>
+                    <Button className="spaceLeft1" colorScheme="red" onClick={()=>handleDeleteShop(shop._id)}>
+                      Delete
                     </Button>
                   </CardFooter>
                 </Stack>
