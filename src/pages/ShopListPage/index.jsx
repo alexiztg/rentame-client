@@ -38,7 +38,7 @@ function ShopListPage() {
   const handleDeleteShop = async (id) => {
     try{
       console.log(id)
-      axios.delete(`${API_URL}/api/shops/${id}`);
+       await axios.delete(`${API_URL}/api/shops/${id}`);
       navigate(0)
     }catch(err){
       console.log(err);

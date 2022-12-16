@@ -56,7 +56,7 @@ function RentListPage(props) {
     try{
       console.log(_id)
       axios.delete(`${API_URL}/api/shops/${id}/rent/${_id}`);
-      navigate(0)
+      navigate("/shops")
     }catch(err){
       console.log(err);
     }
