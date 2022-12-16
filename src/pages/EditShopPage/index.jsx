@@ -145,7 +145,7 @@ function EditShopPage(props) {
                       type="submit"
                       value="Submit"
                     >
-                      Create
+                      Edit Shop
                     </Button>
                   </Stack>
                 </form>

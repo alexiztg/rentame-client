@@ -31,7 +31,6 @@ function AddShop(props) {
     try {
       //Prevenir el comportamiento del envio del formulario
       e.preventDefault();
-      console.log({ name, address, cost, colony, description });
       //Enviar datos al server
       const newShop = await axios.post(`${API_URL}/api/shops`, {
         name,

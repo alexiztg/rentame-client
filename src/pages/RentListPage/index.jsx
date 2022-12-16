@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import moment from "moment";
 import { FiEdit,FiTrash2 } from "react-icons/fi";
+import {AuthContext} from "../../context/auth.context";
 import {
   Card,
   CardHeader,
@@ -26,6 +27,8 @@ const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005";
 function RentListPage(props) {
   const [shop, setShop] = useState(null);
   const { id } = useParams();
+  const { user } = useContext(AuthContext);
+
   const getDetails = (id) => {
     axios
       .get(`${API_URL}/api/shops/${id}`)
@@ -104,9 +107,8 @@ function RentListPage(props) {
                           <Text as="b"> Available: </Text>
                           <input
                             type="checkbox"
-                            defaultChecked={false}
                             checked={shop.rent?.available}
-                            value={shop.rent?.available}
+                          disabled
                           ></input>
                         </Text>
                       </ListItem>
@@ -114,7 +116,7 @@ function RentListPage(props) {
                         <Text>
                           <SettingsIcon color="green.500" />
                           <Text as="b"> Date starts:</Text>
-                          {moment(shop.rent?.date_start).format("DD/MM/YYYY")}
+                          {moment(new Date(shop?.rent?.date_start).toUTCString() ).format("DD/MM/YYYY")}
                         </Text>
                       </ListItem>
                       <ListItem>
@@ -181,9 +183,10 @@ function RentListPage(props) {
                             Date: {moment(review.date).format("DD/MM/YYYY")}
                           </Text>
                         </CardBody>
+                        {user?._id === review.owner && (
                         <CardFooter>
                           <Button className="spaceLeft1" colorScheme="whatsapp">
-                            <Link to={`/shops//review/`}>
+                            <Link to={`/shops/${shop?._id}/review/${review?._id}/edit`}>
                               <FiEdit />
                             </Link>
                           </Button>
@@ -191,6 +194,7 @@ function RentListPage(props) {
                             <Link to={`/shops//review/`}><FiTrash2/></Link>
                           </Button>
                         </CardFooter>
+                  )}
                       </Card>
                     </div>
                   ))}

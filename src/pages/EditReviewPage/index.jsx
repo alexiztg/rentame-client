@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import moment from 'moment'
 import { useParams, useNavigate } from "react-router-dom";
 import {
     Card,
@@ -19,42 +20,35 @@ import {
 const API_URL = process.env.REACT_APP_SERVER_URL || "http://localhost:5005"
 
 function EditReviewPage(props) {
-    const [name, setName] = useState("");
-    const [address, setAddress] = useState("");
-    const [cost, setCost] = useState("");
-    const [colony, setColony] = useState("");
-    const [description, setDescription] = useState("");
-    const { id } = useParams();
+    const [review, setReview] = useState("");
+    const [title, setTitle] = useState("");
+    const [date, setDate] = useState("");
+    const { id, idReview } = useParams();
     const navigate = useNavigate();
 
   useEffect(() => {
     // <== ADD
     axios
-        .get(`${API_URL}/api/shops/${id}`)
+        .get(`${API_URL}/api/shops/${id}/review/${idReview}`)
         .then((response) => {
-        /* 
-          We update the state with the project data coming from the response.
-          This way we set inputs to show the actual title and description of the project
-        */
-        const oneShop = response.data;
-        setName(oneShop.name);
-        setAddress(oneShop.address);
-        setCost(oneShop.cost)
-        setColony(oneShop.colony)
-        setDescription(oneShop.description)
+        
+        const oneReview = response.data;
+        setReview(oneReview.review);
+        setTitle(oneReview.title);
+        setDate(oneReview.date)
       })
       .catch((error) => console.log(error));
-  }, [id]);
+  }, [id, idReview]);
 
   const handleFormSubmit = (e) => {
     // <== ADD
     e.preventDefault();
     // Create an object representing the body of the PUT request
-    const requestBody = { name, address, cost, colony, description };
-
+    const requestBody = { review, title, date : moment(date).format("YYYY-MM-DD[T13:00:00.000Z]") };
+    
     // Make a PUT request to update the project
     axios
-      .put(`${API_URL}/api/shops/${id}`, requestBody)
+      .put(`${API_URL}/api/shops/${id}/review/${idReview}`, requestBody)
       .then((response) => {
         // Once the request is resolved successfully and the project
         // is updated we navigate back to the details page
@@ -74,7 +68,7 @@ function EditReviewPage(props) {
                 fontSize="24px"
                 letterSpacing="-0.5px"
               >
-                New Shop
+                Edit Review
               </Heading>
             </VStack>
             <Card bg="#f6f8fa" variant="outline" w="308px">
@@ -82,58 +76,36 @@ function EditReviewPage(props) {
                 <form onSubmit={handleFormSubmit}>
                   <Stack spacing="4">
                     <FormControl>
-                      <FormLabel size="sm">Name</FormLabel>
+                      <FormLabel size="sm">Title</FormLabel>
                       <Input
                         type="text"
                         bg="white"
                         size="sm"
-                        name="name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        name="title"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
                       />
                     </FormControl>
                     <FormControl>
-                      <FormLabel size="sm">Address</FormLabel>
+                      <FormLabel size="sm">Review</FormLabel>
                       <Input
                         type="text"
                         bg="white"
                         size="sm"
-                        name="address"
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
+                        name="review"
+                        value={review}
+                        onChange={(e) => setReview(e.target.value)}
                       />
                     </FormControl>
                     <FormControl>
-                      <FormLabel size="sm">Cost</FormLabel>
+                      <FormLabel size="sm">Date</FormLabel>
                       <Input
-                        type="text"
+                        type="date"
                         bg="white"
                         size="sm"
-                        name="cost"
-                        value={cost}
-                        onChange={(e) => setCost(e.target.value)}
-                      />
-                    </FormControl>
-                    <FormControl>
-                      <FormLabel size="sm">Colony</FormLabel>
-                      <Input
-                        type="text"
-                        bg="white"
-                        size="sm"
-                        name="colony"
-                        value={colony}
-                        onChange={(e) => setColony(e.target.value)}
-                      />
-                    </FormControl>
-                    <FormControl>
-                      <FormLabel size="sm">Description</FormLabel>
-                      <textarea
-                        type="text"
-                        bg="white"
-                        size="sm"
-                        name="description"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
+                        name="date"
+                        value={moment(date).format("YYYY-MM-DD")}
+                        onChange={(e) => setDate(e.target.value)}
                       />
                     </FormControl>
                     <Button
@@ -145,7 +117,7 @@ function EditReviewPage(props) {
                       type="submit"
                       value="Submit"
                     >
-                      Create
+                      Edit Review
                     </Button>
                   </Stack>
                 </form>

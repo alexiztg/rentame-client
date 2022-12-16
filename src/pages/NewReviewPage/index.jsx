@@ -23,7 +23,6 @@ function AddReview(props) {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const { user } = useContext(AuthContext);
-  console.log(user);
   //Nos permite navegar dandole la URL como parametro
   const navigate = useNavigate();
 
@@ -33,8 +32,6 @@ function AddReview(props) {
     try {
       //Prevenir el comportamiento del envio del formulario
       e.preventDefault();
-      console.log({ review, title, date });
-      console.log("111", id);
       //Enviar datos al server
       const newShop = await axios.post(
         `${API_URL}/api/shops/${id}/review/create`,

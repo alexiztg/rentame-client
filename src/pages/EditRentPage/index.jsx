@@ -26,9 +26,6 @@ function EditRentPage(props) {
     const { id, idRent } = useParams();
     const navigate = useNavigate();
 
-    console.log("1",id);
-    console.log("2",idRent);
-
   useEffect(() => {
     // <== ADD
     axios
@@ -39,7 +36,6 @@ function EditRentPage(props) {
           This way we set inputs to show the actual title and description of the project
         */
         const oneRent = response.data;
-        console.log("oneRent",oneRent);
         setAvailable(oneRent.available);
         setDate_start(oneRent.date_start);
         setDate_end(oneRent.date_end)
@@ -51,8 +47,7 @@ function EditRentPage(props) {
     // <== ADD
     e.preventDefault();
     // Create an object representing the body of the PUT request
-    const requestBody = { available, date_start, date_end };
-
+    const requestBody = { available, date_start : moment(date_start).format("YYYY-MM-DD[T13:00:00.000Z]"), date_end: moment(date_end).format("YYYY-MM-DD[T13:00:00.000Z]") };
     // Make a PUT request to update the project
     axios
       .put(`${API_URL}/api/shops/${id}/rent/${idRent}`, requestBody)
@@ -86,11 +81,10 @@ function EditRentPage(props) {
                       <FormLabel size="sm">Available</FormLabel>
                       <input
                         type="checkbox"
-                        defaultChecked={false}
                         bg="white"
                         size="sm"
                         name="available"
-                        value={available}
+                        checked={available}
                         onChange={(e) => setAvailable(e.target.checked)}
                       />
                     </FormControl>
@@ -101,7 +95,7 @@ function EditRentPage(props) {
                         bg="white"
                         size="sm"
                         name="date_start"
-                        value={moment(date_start).format("YYYY/MM/DD")}
+                        value={moment(date_start).format("YYYY-MM-DD")}
                         onChange={(e) => setDate_start(e.target.value)}
                       />
                     </FormControl>
@@ -112,7 +106,7 @@ function EditRentPage(props) {
                         bg="white"
                         size="sm"
                         name="date"
-                        value={date_end}
+                        value={moment(date_end).format("YYYY-MM-DD")}
                         onChange={(e) => setDate_end(e.target.value)}
                       />
                     </FormControl>
@@ -125,7 +119,7 @@ function EditRentPage(props) {
                       type="submit"
                       value="Submit"
                     >
-                      Create Rent
+                      Edit Rent
                     </Button>
                   </Stack>
                 </form>

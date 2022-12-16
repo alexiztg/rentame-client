@@ -17,6 +17,7 @@ import AddReview from "./pages/NewReviewPage";
 import AddRent from "./pages/NewRentPage";
 import EditShopPage from "./pages/EditShopPage";
 import EditRentPage from "./pages/EditRentPage";
+import EditReviewPage from "./pages/EditReviewPage";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/shops/:id/rent" element={<RentListPage/>}/>
         <Route path="/shops/:id/rent/:idRent/edit" element={<EditRentPage/>}/>
         <Route path="/shops/:id/rent/create" element={<AddRent/>}/>
+        <Route path="/shops/:id/review/:idReview/edit" element={<EditReviewPage/>}/>
         <Route path="/shops/:id/review/create" element={<AddReview/>}/>
         <Route path="/new-shop" element={<AddShop/>}/>
         <Route path="*" element={<NotFoundPage/>}/>

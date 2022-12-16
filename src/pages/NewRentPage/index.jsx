@@ -23,7 +23,6 @@ function AddRent(props) {
   const [date_start, setDate_start] = useState("");
   const [date_end, setDate_end] = useState("");
   const { user } = useContext(AuthContext);
-  console.log(user);
   //Nos permite navegar dandole la URL como parametro
   const navigate = useNavigate();
 
@@ -33,8 +32,6 @@ function AddRent(props) {
     try {
       //Prevenir el comportamiento del envio del formulario
       e.preventDefault();
-      console.log({ available, date_start, date_end });
-      console.log("111", id);
       //Enviar datos al server
       const newShop = await axios.post(
         `${API_URL}/api/shops/${id}/rent/create`,
